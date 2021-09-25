@@ -13,17 +13,18 @@
     <title>Demande d'audience en ligne</title>
 
     <!-- Icons font CSS-->
-    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    
+    <link href="<?=static_url('vendor/mdi-font/css/material-design-iconic-font.min.css'); ?>" rel="stylesheet" media="all">
+    <link href="<?=static_url('vendor/font-awesome-4.7/css/font-awesome.min.css'); ?>" rel="stylesheet" media="all">
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
 
     <!-- Vendor CSS-->
-    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+    <link href="<?=static_url('vendor/select2/select2.min.css'); ?>"  rel="stylesheet" media="all">
+    <link href="<?=static_url('vendor/datepicker/daterangepicker.css'); ?>" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
-    <link href="css/main.css" rel="stylesheet" media="all">
+    <link href="<?=theme_url().'css/main.css'; ?>" rel="stylesheet" media="all">
 </head>
 
 <body>
@@ -104,12 +105,9 @@
                                     <div class="rs-select2 js-select-simple select--search">
                                         <select name="subject">
                                             <option disabled="disabled" selected="selected" required>A qui s'adresse votre demande ?</option>
-                                            <option>Primature</option>
-                                            <option>Ministère du Commerce, de l'Industrie et des PME/PMI</option>
-                                            <option>Ministère de l'Education Nationale</option>
-                                            <option>Ministère du Tourisme</option>
-                                            <option>Ministère du Travail</option>
-                                            <option>Ministère de l'Economie</option>
+                                            <?php foreach ($admistration as $adm) : ?>
+                                                <option><?=$adm; ?></option>
+                                            <?php endforeach; ?>    
                                         </select>
                                         <div class="select-dropdown"></div>
                                     </div>
