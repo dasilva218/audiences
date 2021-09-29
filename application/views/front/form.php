@@ -35,7 +35,7 @@
                     <h2 class="title">Demande d'audience en ligne</h2>
                 </div>
                 <div class="card-body">
-                    <form method="POST">
+                    <?php echo form_open_multipart('front/form/do_upload'); ?>
                         <div class="form-row m-b-55">
                             <div class="name">Noms complet</div>
                             <div class="value">
@@ -129,7 +129,7 @@
                             <div class="name">Votre demande en (PDF)</div>
                             <div class="value">
                                 <div class="form row custom-file">
-                                <input type="file" class="custom-file-input input--style-5" id="validatedCustomFile" required>
+                                <input type="file" name="userfile" class="custom-file-input input--style-5" id="validatedCustomFile" required>
                                 <label class="custom-file-label" for="validatedCustomFile"></label>
                             </div>
                             </div>
@@ -139,7 +139,7 @@
                             <div class="name"></div>
                             <div class="value">
                                 <div class="form row custom-file">
-                                <input type="file" class="custom-file-input input--style-5" id="validatedCustomFile">
+                                <input type="file" name="userfile2" class="custom-file-input input--style-5" id="validatedCustomFile">
                                 <label class="custom-file-label" for="validatedCustomFile">Autre document (facultatif)</label>
                             </div>
                             </div>
@@ -165,7 +165,7 @@
                                     <div class="col-2">
                                         <div class="input-group-desc">
                                             <div class="rs-select2 js-select-simple select--no-search">
-                                                <select name="subject">
+                                                <select name="civilite">
                                                     <option disabled="disabled" selected="selected" required>Civilité</option>
                                                     <option>Monsieur</option>
                                                     <option>Madame</option>
@@ -178,7 +178,7 @@
                                     <div class="col-2">
                                         <div class="input-group-desc">
                                             <div class="rs-select2 js-select-simple select--no-search">
-                                                <select name="subject">
+                                                <select name="audience">
                                                     <option disabled="disabled" selected="selected" required>Type d'audience</option>
                                                     <option>En présentiel</option>
                                                     <option>En ligne</option>
@@ -211,14 +211,14 @@
     </div>
 
     <!-- Jquery JS-->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="<?=static_url("vendor/jquery/jquery.min.js") ?>"></script>
     <!-- Vendor JS-->
-    <script src="vendor/select2/select2.min.js"></script>
-    <script src="vendor/datepicker/moment.min.js"></script>
-    <script src="vendor/datepicker/daterangepicker.js"></script>
+    <script src="<?=static_url("vendor/select2/select2.min.js")?>"></script>
+    <script src="<?=static_url("vendor/datepicker/moment.min.js")?>"></script>
+    <script src="<?=static_url("vendor/datepicker/daterangepicker.js")?>"></script>
 
     <!-- Main JS-->
-    <script src="js/global.js"></script>
+    <script src="<?=static_url("js/global.js") ?>"></script>
 
 </body><!--  -->
 
