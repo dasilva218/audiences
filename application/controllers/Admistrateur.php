@@ -8,6 +8,7 @@ class Admistrateur extends CI_Controller
         parent::__construct();
         $this->load->model('Admistrateur_model');
         $this->load->model('Audience_model');
+        $this->load->model('ConsultAudience_model');
     }
     //affiche le formulaire de connexion
     public function index()
@@ -73,14 +74,29 @@ class Admistrateur extends CI_Controller
         //affiche l' admistrateur
         $admin = $this->Admistrateur_model->par_email($this->session->email_admin);
         $audience = $this->Audience_model->audience_id($id);
-
+        $action_consultation = $this->ConsultAudience_model->demande_id($audience->id_demande);
+        
         $data = [
             'demande' => $audience,
-            'admistrateur' => $admin
+            'admistrateur' => $admin,
+            'action' => $action_consultation
         ];
-
+        // if($audience->nom_fichier2 == null) 
+        //     echo 'bien';
+        // else 
+        //     echo 'rien';    
+        // var_dump($audience->nom_fichier2);
+        // exit;
         template('backend/audience', $data);
     }
+
+
+    /* les actions sur les boutons*/
+    public function accepter()
+    {
+        
+    }
+    /* les actions sur les boutons*/
 
 
     // fonction qui gère les sessions de l'admistrateur

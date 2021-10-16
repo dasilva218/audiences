@@ -23,9 +23,20 @@
           <div class="mt-5">
             <h6 style="color: red;" class="mb-3">Téléchargez la demande d'audience ici !</h6>
 
-            <a href="<?= upload_url($demande->nom_fichier1) ?>" target="_blank"><button type="button" class="btn btn-light"><i class="fas fa-download"></i><?= $demande->nom_fichier1 ?> </button> </a>
-
-            <a href="<?= upload_url($demande->nom_fichier2) ?>" target="_blank"><button type="button" class="btn btn-light"><i class="fas fa-download"></i> <?= $demande->$nom_fichier2 ?></button> </a>
+            <a href="<?= upload_url($demande->nom_fichier1) ?>" target="_blank">
+              <button type="button" class="btn btn-light">
+                <i class="fas fa-download m-1"></i>
+                <?= $demande->nom_fichier1 ?>
+              </button>
+            </a>
+            <?php if ($demand->nom_fichier2) : ?>
+              <a href="<?= upload_url($demande->nom_fichier2) ?>" target="_blank">
+                <button type="button" class="btn btn-light">
+                  <i class="fas fa-download"></i>
+                  <?= $demande->$nom_fichier2 ?>
+                </button>
+              </a>
+            <?php endif ?>
 
           </div>
 
@@ -41,7 +52,7 @@
 
           <!-- Button lists -->
           <div class="mb-4">
-            <?php if (!((int)$action->accepter == 1 || (int)$action->rejeter == 1  )) : ?>
+            <?php if (!((int)$action->accepter == 1 || (int)$action->rejeter == 1)) : ?>
               <a href="<?= site_url('admistrateur/accepter/') . $demande->id_demande ?>"><button type="button" class="btn btn-primary color-bg">Accepter</button> </a>
               <a href="#"><button class="btn btn-light btn-space" type="button" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fas fa-user-tag"></i></button></a>
               <a href="<?= site_url('admistrateur/rejeter/') . $demande->id_demande ?>"><button type="button" class="btn btn-outline-secondary btn-space">Rejeter</button> </a>
