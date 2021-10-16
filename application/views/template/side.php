@@ -23,7 +23,7 @@
       </li>
 
       <li class="sidebar-item">
-        <a class="sidebar-link" href="<?= site_url('admistrateur/') ?>">
+        <a class="sidebar-link" href="<?= site_url('admistrateur/pageAccepte') ?>">
           <i class="far fa-check-circle ico-menu"></i>
           Acceptées
         </a>
@@ -32,8 +32,12 @@
       <li class="sidebar-item"><a class="sidebar-link" href="pending.html">
           <i class="far fa-clock ico-menu"></i> En attentes </a></li>
 
-      <li class="sidebar-item"><a class="sidebar-link" href="rejected.html">
-          <i class="far fa-times-circle ico-menu"></i> Rejetées </a></li>
+      <!-- <li class="sidebar-item">
+        <a class="sidebar-link" href="rejected.html">
+          <i class="far fa-times-circle ico-menu"></i>
+          Rejetées
+        </a>
+      </li> -->
 
       <li class="sidebar-item"><a class="sidebar-link" href="importants.html">
           <i class="far fa-star ico-menu"></i> Importants </a></li>

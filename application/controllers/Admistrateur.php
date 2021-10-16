@@ -17,6 +17,13 @@ class Admistrateur extends CI_Controller
         $this->load->view('backend/login');
     }
 
+    //traitement de la deconnexion
+    public function deconnexion()
+    {
+        $this->session->sess_destroy();
+        redirect('admistrateur');
+    }
+
     //traitement connexion admistrateur
     public function traitement_connexion_admin()
     {
@@ -54,6 +61,11 @@ class Admistrateur extends CI_Controller
 
         //affiche l' admistrateur
         $admin = $this->Admistrateur_model->par_email($this->session->email_admin);
+
+        if (!$admin) {
+            redirect('admistrateur');
+        }
+
         $audience = $this->Audience_model->sql($admin->nom_admistration);
 
         $data = [
@@ -64,7 +76,7 @@ class Admistrateur extends CI_Controller
         template('backend/list', $data);
     }
 
-    //page detail audience
+    //section détail audience
     public function dashboard_detail($id)
     {
         if (!$this->est_connecte()) {
@@ -75,7 +87,7 @@ class Admistrateur extends CI_Controller
         $admin = $this->Admistrateur_model->par_email($this->session->email_admin);
         $audience = $this->Audience_model->audience_id($id);
         $action_consultation = $this->ConsultAudience_model->demande_id($audience->id_demande);
-        
+
         $data = [
             'demande' => $audience,
             'admistrateur' => $admin,
@@ -90,13 +102,95 @@ class Admistrateur extends CI_Controller
         template('backend/audience', $data);
     }
 
+    //gestion des differents pages
+
+    public function pageAccepte()
+    {
+        if (!$this->est_connecte()) {
+            redirect('admistrateur');
+        }
+
+        //affiche l' admistrateur
+        $admin = $this->Admistrateur_model->par_email($this->session->email_admin);
+      
+        if (!$admin) {
+            redirect('admistrateur');
+        }
+      
+        $audience = $this->ConsultAudience_model->sql(1);
+
+        $data = [
+            'demande' => $audience,
+            'admistrateur' => $admin
+        ];
+
+        template('backend/list', $data);
+    }
 
     /* les actions sur les boutons*/
-    public function accepter()
+    public function accepter($id)
     {
-        
+        if (!$this->est_connecte()) {
+            redirect('admistrateur');
+        }
+
+        $admin = $this->Admistrateur_model->par_email($this->session->email_admin);
+        $audience = $this->Audience_model->audience_id($id);
+
+        $consult = new ConsultAudience_model();
+        $consult->id_admistrateur = $admin->id_admistrateur;
+        $consult->id_demande = $audience->id_demande;
+        $consult->accepter = 1;
+        $consult->important = 0;
+        $consult->archiver = 0;
+
+        $consult->action();
+
+        redirect('admistrateur/dashboard_detail/' . $audience->id_demande);
     }
-    /* les actions sur les boutons*/
+
+    public function archiver($id)
+    {
+        if (!$this->est_connecte()) {
+            redirect('admistrateur');
+        }
+
+        $admin = $this->Admistrateur_model->par_email($this->session->email_admin);
+        $audience = $this->Audience_model->audience_id($id);
+
+        $consult = new ConsultAudience_model();
+        $consult->id_admistrateur = $admin->id_admistrateur;
+        $consult->id_demande = $audience->id_demande;
+        $consult->accepter = 0;
+        $consult->important = 0;
+        $consult->archiver = 1;
+
+        $consult->action();
+
+        redirect('admistrateur/dashboard_detail/' . $audience->id_demande);
+    }
+
+    public function important($id)
+    {
+        if (!$this->est_connecte()) {
+            redirect('admistrateur');
+        }
+
+        $admin = $this->Admistrateur_model->par_email($this->session->email_admin);
+        $audience = $this->Audience_model->audience_id($id);
+
+        $consult = new ConsultAudience_model();
+        $consult->id_admistrateur = $admin->id_admistrateur;
+        $consult->id_demande = $audience->id_demande;
+        $consult->accepter = 0;
+        $consult->important = 1;
+        $consult->archiver = 0;
+
+        $consult->action();
+
+        redirect('admistrateur/dashboard_detail/' . $audience->id_demande);
+    }
+    /* fin des actions sur les boutons*/
 
 
     // fonction qui gère les sessions de l'admistrateur

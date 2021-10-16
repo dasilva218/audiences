@@ -29,15 +29,13 @@
                 <?= $demande->nom_fichier1 ?>
               </button>
             </a>
-            <?php if ($demand->nom_fichier2) : ?>
-              <a href="<?= upload_url($demande->nom_fichier2) ?>" target="_blank">
-                <button type="button" class="btn btn-light">
-                  <i class="fas fa-download"></i>
-                  <?= $demande->$nom_fichier2 ?>
-                </button>
-              </a>
-            <?php endif ?>
 
+            <a href="<?= upload_url($demande->nom_fichier2) ?>" target="_blank">
+              <button type="button" class="btn btn-light">
+                <i class="fas fa-download"></i>
+                <?= $demande->nom_fichier2 ?>
+              </button>
+            </a>
           </div>
 
 
@@ -54,11 +52,11 @@
           <div class="mb-4">
             <?php if (!((int)$action->accepter == 1 || (int)$action->rejeter == 1)) : ?>
               <a href="<?= site_url('admistrateur/accepter/') . $demande->id_demande ?>"><button type="button" class="btn btn-primary color-bg">Accepter</button> </a>
-              <a href="#"><button class="btn btn-light btn-space" type="button" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fas fa-user-tag"></i></button></a>
-              <a href="<?= site_url('admistrateur/rejeter/') . $demande->id_demande ?>"><button type="button" class="btn btn-outline-secondary btn-space">Rejeter</button> </a>
-              <a href="#"><button type="button" class="btn btn-outline-secondary btn-space">Rappel</button> </a>
-              <a href="#"><button type="button" class="btn btn-outline-secondary btn-space">Important</button> </a>
-              <a href="#"><button type="button" class="btn btn-outline-secondary btn-space">Archiver</button> </a>
+              <!-- <a href="#"><button class="btn btn-light btn-space" type="button" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fas fa-user-tag"></i></button></a> -->
+              <!-- <a href=""><button type="button" class="btn btn-outline-secondary btn-space">Rejeter</button> </a> -->
+              <a href=""><button type="button" class="btn btn-outline-secondary btn-space">Rappel</button> </a>
+              <a href="<?= site_url('admistrateur/important/') . $demande->id_demande ?>"><button type="button" class="btn btn-outline-secondary btn-space">Important</button> </a>
+              <a href="<?= site_url('admistrateur/archiver/') . $demande->id_demande ?>"><button type="button" class="btn btn-outline-secondary btn-space">Archiver</button> </a>
             <?php endif ?>
           </div>
 
