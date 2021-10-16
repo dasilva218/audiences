@@ -16,6 +16,7 @@ class Audience_model extends CI_Model
     public $nom_fichier2;
     public $civilite;
     public $type_audience;
+    public $message;
     public $nom_admistration;
 
     // Nom de la table
@@ -38,5 +39,21 @@ class Audience_model extends CI_Model
     public function enregistrer_audience()
     {
         return $this->db->insert($this->table, $this);
+    }
+
+    // Renvoyer demande d'audience par admistration
+
+    public function audience_admistration($nom_admistration)
+    {
+        $query = $this->db->get_where($this->table, array('nom_admistration' => $nom_admistration));
+        return $query->result();
+    }
+
+    // Renvoyer une demande par son identifiant
+
+    public function audience_id($id)
+    {
+        $query = $this->db->get_where($this->table, array('id_demande' => $id));
+        return $query->row();
     }
 }

@@ -5,7 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Admistration_model extends CI_Model
 {
     // Nom de la table
-    private $table = 'admistration';
+    private $table = 'admistrations';
 
     // Clé primaire de la table
     private $id = 'nom_admistration';

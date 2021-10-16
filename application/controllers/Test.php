@@ -21,7 +21,17 @@ class Test extends CI_Controller
 	{
 		echo static_url('static/js/');
 	}
-/*
+
+	public function affiche()
+	{
+		$this->load->view('template/head');
+		$this->load->view('template/header');
+		$this->load->view('template/side');
+		$this->load->view('template/top');
+		$this->load->view('backend/audience');
+		$this->load->view('template/fouter');
+	}
+	/*
 	if (!$this->est_connecte()) {
 		redirect('gestionnaire/connexion');
 	}
