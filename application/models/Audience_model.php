@@ -49,6 +49,16 @@ class Audience_model extends CI_Model
         return $query->result();
     }
 
+    public function sql($id){
+        $sql = 
+        "SELECT *
+         FROM demande_audiences
+         WHERE nom_admistration = ? 
+         ORDER BY date_envoie desc ";
+    
+        return $this->db->query($sql,$id)->result();        
+    }
+
     // Renvoyer une demande par son identifiant
 
     public function audience_id($id)

@@ -7,6 +7,7 @@ class Admistrateur extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Admistrateur_model');
+        $this->load->model('Audience_model');
     }
     //affiche le formulaire de connexion
     public function index()
@@ -30,7 +31,7 @@ class Admistrateur extends CI_Controller
 
         //insertion d'information
         $admin = $this->Admistrateur_model->connexion($param);
-        
+
         if ($admin) {
             $this->session->set_userdata('token_admin', md5(time()));
             $this->session->set_userdata('email_admin', $admin->email);
@@ -52,10 +53,35 @@ class Admistrateur extends CI_Controller
 
         //affiche l' admistrateur
         $admin = $this->Admistrateur_model->par_email($this->session->email_admin);
+        $audience = $this->Audience_model->sql($admin->nom_admistration);
 
-        var_dump($admin);
-        exit;
+        $data = [
+            'demande' => $audience,
+            'admistrateur' => $admin
+        ];
+
+        template('backend/list', $data);
     }
+
+    //page detail audience
+    public function dashboard_detail($id)
+    {
+        if (!$this->est_connecte()) {
+            redirect('admistrateur');
+        }
+
+        //affiche l' admistrateur
+        $admin = $this->Admistrateur_model->par_email($this->session->email_admin);
+        $audience = $this->Audience_model->audience_id($id);
+
+        $data = [
+            'demande' => $audience,
+            'admistrateur' => $admin
+        ];
+
+        template('backend/audience', $data);
+    }
+
 
     // fonction qui gère les sessions de l'admistrateur
     private function est_connecte()

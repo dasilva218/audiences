@@ -16,7 +16,7 @@
     <span class="text-uppercase text-gray-400 text-xs letter-spacing-0 mx-3 px-2 heading">Listes</span>
     <ul class="list-unstyled py-4">
       <li class="sidebar-item active">
-        <a class="sidebar-link" href="<?= site_url('admistrateur') ?>">
+        <a class="sidebar-link" href="<?= site_url('admistrateur/dashboard') ?>">
           <i class="fas fa-home ico-menu"></i>
           Réception
         </a>
