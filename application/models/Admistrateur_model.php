@@ -29,9 +29,9 @@ class Admistrateur_model extends CI_Model
     //connexion admistrateur
     public function connexion($params)
     {
-        $this->email   = $params['email_admi'];
-        $this->pass_admi  = $params['pass_admi'];
-        $query = $this->db->get_where($this->table, array('email' => $params['email_admi'], 'pass_admi' => $params['pass_admi']));
+        $this->email   = $params['email_admin'];
+        $this->pass_admi  = $params['pass_admin'];
+        $query = $this->db->get_where($this->table, array('email' => $params['email_admin'], 'pass_admi' => $params['pass_admin']));
 
         return $query->row();
     }
