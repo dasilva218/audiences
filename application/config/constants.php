@@ -86,4 +86,19 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 
 defined('DEV_URL') OR define('DEV_URL', "http://localhost/audiences"); // L'url lorsque nous sommes en local
-//                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  defined('PROD_URL') OR define('PROD_URL', "https://business.ecole241.org"); // L'url lorsque nous sommes en ligne
+defined('PROD_URL') OR define('PROD_URL', "http://audience.alwaysdata.net/"); // ntcina.alwaysdata.net/ L'url lorsque nous sommes en ligne
+defined('DEV_INDEX') OR define('DEV_INDEX', "index.php"); 
+defined('PROD_INDEX') OR define('PROD_INDEX', "");
+
+//constante base de données
+defined('DEV_USER') OR define('DEV_USER', "root");//user
+defined('PROD_USER') OR define('PROD_USER', "audience"); // ntcina_241
+
+defined('DEV_PASS') OR define('DEV_PASS', "");//pass
+defined('PROD_PASS') OR define('PROD_PASS', "alphaomegadata"); //ntchina241
+
+defined('DEV_HOST') OR define('DEV_HOST', "localhost");//host
+defined('PROD_HOST') OR define('PROD_HOST', "mysql-ntchina.alwaysdata.net");//mysql-ntcina.alwaysdata.net
+
+defined('DEV_NAME') OR define('DEV_NAME', "audiences");//nom de la base
+defined('PROD_NAME') OR define('PROD_NAME', "audiences");//ntcina_241

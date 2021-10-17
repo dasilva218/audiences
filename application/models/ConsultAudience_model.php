@@ -54,7 +54,7 @@ class ConsultAudience_model extends CI_Model
         return $query->row();
     }
 
-    public function sql($id){
+    public function accepte($id){
         $sql = 
         "SELECT demande_audiences.id_demande, nom_demandeur, prenom_demandeur, statut_demandeur, date_envoie, objet, nom_admistrateur, accepter
          FROM demande_audiences, admistrateur, consulter
@@ -65,5 +65,26 @@ class ConsultAudience_model extends CI_Model
         return $this->db->query($sql,$id)->result();        
     }
 
+    public function archiver($id){
+        $sql = 
+        "SELECT demande_audiences.id_demande, nom_demandeur, prenom_demandeur, statut_demandeur, date_envoie, objet, nom_admistrateur, accepter
+         FROM demande_audiences, admistrateur, consulter
+         WHERE demande_audiences.id_demande = consulter.id_demande 
+         AND admistrateur.id_admistrateur = consulter.id_admistrateur
+         AND consulter.archiver=? ";
     
+        return $this->db->query($sql,$id)->result();        
+    }
+
+    public function important($id){
+        $sql = 
+        "SELECT demande_audiences.id_demande, nom_demandeur, prenom_demandeur, statut_demandeur, date_envoie, objet, nom_admistrateur, accepter
+         FROM demande_audiences, admistrateur, consulter
+         WHERE demande_audiences.id_demande = consulter.id_demande 
+         AND admistrateur.id_admistrateur = consulter.id_admistrateur
+         AND consulter.important=? ";
+    
+        return $this->db->query($sql,$id)->result();        
+    }
+
 }    

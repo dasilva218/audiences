@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'audiences',
+	'hostname' => (ENVIRONMENT !== 'production') ? DEV_HOST : PROD_HOST,
+	'username' => (ENVIRONMENT !== 'production') ? DEV_USER : PROD_USER,
+	'password' => (ENVIRONMENT !== 'production') ? DEV_PASS : PROD_PASS,
+	'database' => (ENVIRONMENT !== 'production') ? DEV_NAME : PROD_NAME,
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -94,3 +94,5 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+

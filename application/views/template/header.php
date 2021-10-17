@@ -17,9 +17,9 @@
             <div class="navbar-holder d-flex align-items-center justify-content-between w-100">
               <!-- Navbar Header-->
               <div class="navbar-header">
-                <!-- Navbar Brand --><a class="navbar-brand d-none d-sm-inline-block" href="index.html">
+                <!-- Navbar Brand<a class="navbar-brand d-none d-sm-inline-block" href="index.html"></a> -->
                   <h2 class="brand-text d-none d-lg-inline-block"><span>Au</span><strong>diences!</strong></h2>
-                  <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div></a>
+                  <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div>
                 <!-- Toggle Button--><a class="menu-btn active" id="toggle-btn" href="#"><span></span><span></span><span></span></a>
               </div>
               <!-- Navbar Menu -->

@@ -70,7 +70,9 @@ class Admistrateur extends CI_Controller
 
         $data = [
             'demande' => $audience,
-            'admistrateur' => $admin
+            'admistrateur' => $admin,
+            'title' => "Réception",
+            'active' => "dashboard"
         ];
 
         template('backend/list', $data);
@@ -91,7 +93,10 @@ class Admistrateur extends CI_Controller
         $data = [
             'demande' => $audience,
             'admistrateur' => $admin,
-            'action' => $action_consultation
+            'action' => $action_consultation,
+            'title' => "Consultation",
+            'active' => "dashboard"
+            
         ];
         // if($audience->nom_fichier2 == null) 
         //     echo 'bien';
@@ -117,14 +122,69 @@ class Admistrateur extends CI_Controller
             redirect('admistrateur');
         }
       
-        $audience = $this->ConsultAudience_model->sql(1);
+        $audience = $this->ConsultAudience_model->accepte(1);
 
         $data = [
             'demande' => $audience,
-            'admistrateur' => $admin
+            'admistrateur' => $admin,
+            'active' => "accepte",
+            'title' => "Accepter",
+
         ];
 
-        template('backend/list', $data);
+        template('backend/accepterList', $data);
+    }
+
+    public function pageImportant()
+    {
+        if (!$this->est_connecte()) {
+            redirect('admistrateur');
+        }
+
+        //affiche l' admistrateur
+        $admin = $this->Admistrateur_model->par_email($this->session->email_admin);
+      
+        if (!$admin) {
+            redirect('admistrateur');
+        }
+      
+        $audience = $this->ConsultAudience_model->important(1);
+
+        $data = [
+            'demande' => $audience,
+            'admistrateur' => $admin,
+            'active' => "important",
+            'title' => "Important"
+
+        ];
+
+        template('backend/importantList', $data);
+    }
+
+    public function pageArchiver()
+    {
+        if (!$this->est_connecte()) {
+            redirect('admistrateur');
+        }
+
+        //affiche l' admistrateur
+        $admin = $this->Admistrateur_model->par_email($this->session->email_admin);
+      
+        if (!$admin) {
+            redirect('admistrateur');
+        }
+      
+        $audience = $this->ConsultAudience_model->archiver(1);
+
+        $data = [
+            'demande' => $audience,
+            'admistrateur' => $admin,
+            'active' => "archiver",
+            'title' => "Archiver",
+
+        ];
+
+        template('backend/archiverList', $data);
     }
 
     /* les actions sur les boutons*/

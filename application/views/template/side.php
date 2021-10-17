@@ -15,22 +15,22 @@
     <!-- Sidebar Navidation Menus-->
     <span class="text-uppercase text-gray-400 text-xs letter-spacing-0 mx-3 px-2 heading">Listes</span>
     <ul class="list-unstyled py-4">
-      <li class="sidebar-item active">
+      <li class="sidebar-item <?= $active == "dashboard" ? "active" : " " ?>">
         <a class="sidebar-link" href="<?= site_url('admistrateur/dashboard') ?>">
           <i class="fas fa-home ico-menu"></i>
           Réception
         </a>
       </li>
 
-      <li class="sidebar-item">
+      <li class="sidebar-item <?= $active == "accepte" ? "active" : " " ?>">
         <a class="sidebar-link" href="<?= site_url('admistrateur/pageAccepte') ?>">
           <i class="far fa-check-circle ico-menu"></i>
           Acceptées
         </a>
       </li>
 
-      <li class="sidebar-item"><a class="sidebar-link" href="pending.html">
-          <i class="far fa-clock ico-menu"></i> En attentes </a></li>
+      <!-- <li class="sidebar-item"><a class="sidebar-link" href="pending.html">
+          <i class="far fa-clock ico-menu"></i> En attentes </a></li> -->
 
       <!-- <li class="sidebar-item">
         <a class="sidebar-link" href="rejected.html">
@@ -39,10 +39,10 @@
         </a>
       </li> -->
 
-      <li class="sidebar-item"><a class="sidebar-link" href="importants.html">
+      <li class="sidebar-item <?= $active == "important" ? "active" : " " ?>"><a class="sidebar-link" href="<?= site_url('admistrateur/pageImportant') ?>">
           <i class="far fa-star ico-menu"></i> Importants </a></li>
 
-      <li class="sidebar-item"><a class="sidebar-link" href="archived.html">
+      <li class="sidebar-item <?= $active == "archiver" ? "active" : " " ?>"><a class="sidebar-link" href="<?= site_url('admistrateur/pageArchiver') ?>">
           <i class="far fa-folder ico-menu"></i> Archivées </a></li>
     </ul>
 
