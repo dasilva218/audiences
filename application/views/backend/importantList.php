@@ -5,7 +5,7 @@
   <div class="container">
     <!-- Demande 1-->
     <div class="card card-demand mb-0">
-      <a href="<?= site_url('admistrateur/dashboard_detail/') . $item->id_demande ?>">
+      <a href="<?= site_url('admistrateur/important_detail/') . $item->id_demande ?>">
         <div class="card-body p-1">
           <div class="row align-items-center gx-lg-5 gy-3">
             <div class="col-lg-6 border-lg-end">
