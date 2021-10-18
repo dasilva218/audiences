@@ -1,0 +1,183 @@
+contexte * 
+package 
+cas-utilisation * 
+séquence 
+activité ** 
+classe **
+réservation de billet d'avion en ligne et boutique en ligne
+
+/ *
+ Exercice: afficher l'enfant d'un objet du DOM
+* /
+
+// Affiche un enfant d'un objet du DOM
+// Le paramètre noeud est l'objet du DOM
+// Le paramètre indice est l'indice de l'enfant à afficher
+fonction  afficherEnfant ( noeud ,  indice )  {
+    if  ( noeud . nodeType  ===  document . ELEMENT_NODE )  {
+        si  ( ( indice > = 0 )  &&  ( indice  <  noeud . childNodes . longueur ) )  {
+            console . log ( noeud . childNodes [ indice ] ) ;
+        }  else  {
+            console . erreur ( "Indice incorrect" ) ;
+        }
+    }  else  {
+        console . erreur ( "Type de noeud incorrect" ) ;
+    }
+}
+
+// Doit afficher le noeud h1
+afficherEnfant ( document . corps ,  1 ) ;
+
+// Doit afficher l'erreur "Indice incorrect"
+// L'indice demandé est négatif
+afficherEnfant ( document . corps ,  - 1 ) ;
+
+// Doit afficher l'erreur "Indice incorrect"
+// Le noeud body a moins de 9 noeuds enfants
+afficherEnfant ( document . corps ,  8 ) ;
+
+// Doit afficher l'erreur "Type de noeud incorrect"
+// Le premier noeud enfant de corps est textuel et n'a donc pas d'enfants
+afficherEnfant ( document . body . childNodes [ 0 ] ,  0 ) ;
+
+--------------------------------------------------------
+
+var  h  =  document . tête ;  // La variable h contient l'objet head du DOM
+console . log ( h ) ;
+
+var  b  =  document . corps ;  // La variable b contient l'objet body du DOM
+console . log ( b ) ;
+
+if  ( document . body . nodeType  ===  document . ELEMENT_NODE )  {
+    console . log ( "Body est un noeud élément" ) ;
+}  else  {
+    console . log ( "Body est un noeud textuel" ) ;
+}
+
+// Accès au premier enfant enfant du noeud body
+console . log ( document . body . childNodes [ 0 ] ) ;
+
+// Accès au deuxième enfant du corps noeud
+console . log ( document . body . childNodes [ 1 ] ) ;
+
+// Affiche les noeuds enfant du noeud body
+for  ( var  i  =  0 ;  i  <  document . body . childNodes . length ;  i ++ )  {
+    console . log ( document . body . childNodes [ i ] ) ;
+}
+
+var  h1  =  document . corps . childNodes [ 1 ] ;
+console . log ( h1 . parentNode ) ;  // Affiche le corps noeud
+
+console . journal ( document . parentNode ) ;  // Affiche null: document n'a aucun noeud parent
+
+------parcour du dom-----------
+console . log ( document . body . childNodes [ 5 ] . childNodes [ 1 ] ) ;
+
+var  titresElts  =  document . getElementsByTagName ( "h2" ) ;  // Tous les titres h2
+console . log ( titresElts [ 0 ] ) ;  // Affiche le premier titre h2
+console . log ( titresElts . longueur ) ;  // Affiche 3
+
+// Tous les éléments ayant la classe "merveilles"
+var  merveillesElts  =  document . getElementsByClassName ( "merveilles" ) ;
+for  ( var  i  =  0 ;  i  <  merveillesElts . length ;  i ++ )  {
+    console . log ( merveillesElts [ i ] ) ;
+}
+
+// Elément portant l'identifiant "nouvelles"
+console . log ( document . getElementById ( "nouvelles" ) ) ;
+
+// Tous les éléments fils de l'identifiant "antiques" ayant la classe "existe"
+console . log ( document . getElementById ( "antiques" ) . getElementsByClassName ( "existe" ) . length ) ;  // Affiche 1
+
+// Tous les paragraphes
+console . log ( document . querySelectorAll ( "p" ) . length ) ;  // Affiche 3
+
+// Tous les paragraphes à l'intérieur de l'identification identifiée par "contenu"
+console . log ( document . querySelectorAll ( "#contenu p" ) . length ) ;  // Affiche 2
+
+// Tous les éléments ayant la classe "existe"
+console . log ( document . querySelectorAll ( ".existe" ) . length ) ;  // Affiche 8
+
+// Tous les éléments fils de l'identification identifiés par "antiques" ayant la classe "existe"
+console . log ( document . querySelectorAll ( "#antiques> .existe" ) . length ) ;  // Affiche 1
+
+// Le premier paragraphe
+console . log ( document . querySelector ( "p" ) ) ;
+
+// Le contenu HTML de l'identification identifiée par "contenu"
+console . log ( document . getElementById ( "contenu" ) . innerHTML ) ;
+
+// Le contenu textuel de l'identification identifié par "contenu"
+console . log ( document . getElementById ( "contenu" ) . textContent ) ;
+
+// L'attribut href du premier lien
+console . log ( document . querySelector ( "a" ) . getAttribute ( "href" ) ) ;
+
+// L'identifiant de la première liste
+console . log ( document . querySelector ( "ul" ) . id ) ;
+// L'attribut href du premier lien
+console . log ( document . querySelector ( "a" ) . href ) ;
+
+if  ( document . querySelector ( "a" ) . hasAttribute ( "target" ) )  {
+    console . journal ( "Le premier lien possède l'attribut cible" ) ;
+}  else  {
+    console . log ( "Le premier lien ne possède pas l'attribut cible" ) ;
+}
+
+// Liste des classes de l'identification identifiée par "antiques"
+var  classes  =  document . getElementById ( "antiquités" ) . classList ;
+console . log ( classes . longueur ) ;  // Affiche 1
+console . log ( classes [ 0 ] ) ;  // Affiche "merveilles"
+
+if  ( document . getElementById ( "antiques" ) . classList . contains ( "merveille" ) )  {
+    console . log ( "L'élément identifié par antiques possède la classe merveille" ) ;
+}  else  {
+    console . log ( "L'élément identifié par antiques ne possède pas la classe merveille" ) ;
+}
+------------------
+/ *
+ Exercice: attributs et classes
+* /
+
+// Affiche des informations sur les liens
+fonction  infosLiens ( )  {
+    var  liensElts  =  document . getElementsByTagName ( "a" ) ;
+    var  nombreLiens  =  liensElts . longueur ;
+    console . log ( nombreLiens ) ;
+
+    if  ( nombreLiens  >  0 )  {
+        console . log ( liensElts [ 0 ] . getAttribute ( "href" ) ) ;
+        console . log ( liensElts [ nombreLiens  -  1 ] . getAttribute ( "href" ) ) ;
+    }
+}
+
+// Affiche si un élément possède une classe
+fonction  possède ( id ,  classe )  {
+    var  instrument  =  document . getElementById ( id ) ;
+    if  ( instrument ! == null )  {
+        console . log ( instrument . classList . contains ( classe ) ) ;
+    }  else  {
+        console . log ( "Aucun élément ne possède l'identifiant"  +  id ) ;
+    }
+}
+
+infosLiens ( ) ;
+
+posséder ( "saxophone" ,  "bois" ) ;  // Doit afficher true
+posséder ( "saxophone" ,  "cuivre" ) ;  // Doit afficher false
+posséder ( "trompette" ,  "cuivre" ) ;  // Doit afficher true
+posséder ( "contrebasse" ,  "cordes" ) ;  // Doit afficher false
+------------
+/ *
+ Exercice: compter les éléments
+* /
+
+// Compte les éléments à partir d'un sélecteur
+fonction  compterElements ( selecteur )  {
+    retourner le  document . querySelectorAll ( sélecteur ) . longueur ;
+}
+
+console . log ( compterElements ( "p" ) ) ;  // Doit afficher 4
+console . log ( compterElements ( ".adjectif" ) ) ;  // Doit afficher 3
+console . log ( compterElements ( "p. objectif" ) ) ;  // Doit afficher 3
+console . log ( compterElements ( "p> .adjectif" ) ) ;  // Doit afficher 2
