@@ -17,7 +17,7 @@ class Audience_model extends CI_Model
     public $civilite;
     public $type_audience;
     public $message;
-    public $nom_admistration;
+    public $admistrations_nom_admistration;
 
     // Nom de la table
     private $table = 'demande_audiences';
@@ -45,7 +45,7 @@ class Audience_model extends CI_Model
 
     public function audience_admistration($nom_admistration)
     {
-        $query = $this->db->get_where($this->table, array('nom_admistration' => $nom_admistration));
+        $query = $this->db->get_where($this->table, array('admistrations_nom_admistration' => $nom_admistration));
         return $query->result();
     }
 
@@ -53,7 +53,7 @@ class Audience_model extends CI_Model
         $sql = 
         "SELECT *
          FROM demande_audiences
-         WHERE nom_admistration = ? 
+         WHERE admistrations_nom_admistration = ? 
          ORDER BY date_envoie desc ";
     
         return $this->db->query($sql,$id)->result();        

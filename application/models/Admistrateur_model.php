@@ -7,7 +7,7 @@ class Admistrateur_model extends CI_Model
     public $nom_admistrateur;
     public $email;
     public $pass_admi;
-    public $nom_admistration;
+    public $admistrations_nom_admistration;
 
     // Nom de la table
     private $table = 'admistrateur';

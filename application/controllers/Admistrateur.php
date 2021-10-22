@@ -66,9 +66,8 @@ class Admistrateur extends CI_Controller
             redirect('admistrateur');
         }
 
-        $audience = $this->Audience_model->sql($admin->nom_admistration);
-       // $audEtat = $this->ConsultAudience_model->demande_admin($admin->id_admistrateur);
-       
+        $audience = $this->Audience_model->sql($admin->admistrations_nom_admistration);
+
         $data = [
             'demande' => $audience,
             'admistrateur' => $admin,
@@ -78,6 +77,7 @@ class Admistrateur extends CI_Controller
 
         template('backend/list', $data);
     }
+
 
     //section détail audience
     public function dashboard_detail($id)
@@ -89,7 +89,7 @@ class Admistrateur extends CI_Controller
         //affiche l' admistrateur
         $admin = $this->Admistrateur_model->par_email($this->session->email_admin);
         $audience = $this->Audience_model->audience_id($id);
-        $action_consultation = $this->ConsultAudience_model->demande_id($audience->id_demande);
+        // $action_consultation = $this->ConsultAudience_model->demande_id($audience->id_demande);
 
         $data = [
             'demande' => $audience,
@@ -97,7 +97,7 @@ class Admistrateur extends CI_Controller
             'action' => $action_consultation,
             'title' => "Consultation",
             'active' => "dashboard"
-            
+
         ];
         // if($audience->nom_fichier2 == null) 
         //     echo 'bien';
@@ -118,11 +118,11 @@ class Admistrateur extends CI_Controller
 
         //affiche l' admistrateur
         $admin = $this->Admistrateur_model->par_email($this->session->email_admin);
-      
+
         if (!$admin) {
             redirect('admistrateur');
         }
-      
+
         $audience = $this->ConsultAudience_model->accepte(1);
 
         $data = [
@@ -154,9 +154,9 @@ class Admistrateur extends CI_Controller
             'action' => $action_consultation,
             'active' => "accepte",
             'title' => "Accepter",
-            
+
         ];
-       
+
         template('backend/accepterDetail', $data);
     }
 
@@ -169,11 +169,11 @@ class Admistrateur extends CI_Controller
 
         //affiche l' admistrateur
         $admin = $this->Admistrateur_model->par_email($this->session->email_admin);
-      
+
         if (!$admin) {
             redirect('admistrateur');
         }
-      
+
         $audience = $this->ConsultAudience_model->important(1);
 
         $data = [
@@ -205,7 +205,7 @@ class Admistrateur extends CI_Controller
             'action' => $action_consultation,
             'active' => "important",
             'title' => "Important"
-            
+
         ];
         // if($audience->nom_fichier2 == null) 
         //     echo 'bien';
@@ -225,11 +225,11 @@ class Admistrateur extends CI_Controller
 
         //affiche l' admistrateur
         $admin = $this->Admistrateur_model->par_email($this->session->email_admin);
-      
+
         if (!$admin) {
             redirect('admistrateur');
         }
-      
+
         $audience = $this->ConsultAudience_model->archiver(1);
 
         $data = [
@@ -260,12 +260,12 @@ class Admistrateur extends CI_Controller
             'action' => $action_consultation,
             'active' => "archiver",
             'title' => "Archiver",
-            
+
         ];
-       
+
         template('backend/archiverDetail', $data);
     }
-    
+
 
     /* les actions sur les boutons*/
     public function accepter($id)

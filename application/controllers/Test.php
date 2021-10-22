@@ -25,15 +25,15 @@ class Test extends CI_Controller
 
 	public function test_code()
 	{
-		$demande_audiences = $this->Audience_model->sql('Primature');
+		// $demande_audiences = $this->Audience_model->sql('Primature');
 
-		// var_dump($demande_audiences);
-		$user = [
-			'nom' => $demande_audiences,
-		];
+		// // var_dump($demande_audiences);
+		// $user = [
+		// 	'nom' => $demande_audiences,
+		// ];
 
-		echo( json_encode($user) );
-		
+		// echo( json_encode($user) );
+		$this->load->view('email/demandeur/enregistrement');
 	}
 
 	public function affiche()

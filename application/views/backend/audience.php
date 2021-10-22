@@ -5,7 +5,7 @@
       <div class="col-lg-8 bg-white">
         <div class="p-3">
           <p class="text-sm text-gray-500 date-position mb-4 mt-2">
-            <?= $demande->date_envoie ?>
+            <?= date_formater($demande->date_envoie)  ?>
           </p>
           <h3 class="mb-2">
             <?= $demande->objet ?> 

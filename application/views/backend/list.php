@@ -21,7 +21,7 @@
                     </div>
                   </div>
                   <span class="text-sm text-gray-600 d-none d-sm-block">
-                    <?= $item->date_envoie ?>
+                    <?= date_formater($item->date_envoie) ?>
                   </span>
                 </div>
               </div>

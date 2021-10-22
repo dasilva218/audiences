@@ -45,7 +45,7 @@ class ConsultAudience_model extends CI_Model
     public function demande_admin($id)
     {
         $query = $this->db->get_where($this->table, array('id_admistrateur' => $id));
-        return $query->row();
+        return $query->result();
     }
     
     public function demande_audience($id)
@@ -83,6 +83,17 @@ class ConsultAudience_model extends CI_Model
          WHERE demande_audiences.id_demande = consulter.id_demande 
          AND admistrateur.id_admistrateur = consulter.id_admistrateur
          AND consulter.important=? ";
+    
+        return $this->db->query($sql,$id)->result();        
+    }
+
+    public function aud($id){
+        $sql = 
+        "SELECT demande_audiences.id_demande, nom_demandeur, prenom_demandeur, statut_demandeur, date_envoie, objet, nom_admistrateur, accepter
+         FROM demande_audiences, admistrateur, consulter
+         WHERE demande_audiences.id_demande = consulter.id_demande 
+         AND admistrateur.id_admistrateur = consulter.id_admistrateur
+         AND demande_audiences.nom_admistration=? ";
     
         return $this->db->query($sql,$id)->result();        
     }
