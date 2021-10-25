@@ -8,22 +8,22 @@
             <?= date_formater($demande->date_envoie)  ?>
           </p>
           <h3 class="mb-2">
-            <?= $demande->objet ?> 
+            <?= $demande->objet ?>
           </h3>
 
           <hr class="mb-4">
 
           <p class="mt-5">
             <span class="subtitle">
-            De :
-          </span>
-           <?= $demande->nom_demandeur . ' ' . $demande->prenom_demandeur ?>
+              De :
+            </span>
+            <?= $demande->nom_demandeur . ' ' . $demande->prenom_demandeur ?>
             <br>
             <span class="subtitle">Fonction :</span>
-             <?= $demande->statut_demandeur ?>
+            <?= $demande->statut_demandeur ?>
             <br>
             <span class="subtitle">Audience :</span>
-             <?= $demande->type_audience ?>
+            <?= $demande->type_audience ?>
           </p>
 
           <!-- Short message -->
@@ -36,7 +36,7 @@
           <!-- Dowload file demand -->
           <div class="mt-5">
             <h6 style="color: red;" class="mb-3">
-             Téléchargez la demande d'audience ici !
+              Téléchargez la demande d'audience ici !
             </h6>
 
             <a href="<?= upload_url($demande->nom_fichier1) ?>" target="_blank">
@@ -68,14 +68,21 @@
 
           <!-- Button lists -->
           <div class="mb-4">
-            <?php if (!((int)$action->accepter == 1 || (int)$action->rejeter == 1)) : ?>
-              <a href="<?= site_url('admistrateur/accepter/') . $demande->id_demande ?>"><button type="button" class="btn btn-primary color-bg">Accepter</button> </a>
-              <!-- <a href="#"><button class="btn btn-light btn-space" type="button" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fas fa-user-tag"></i></button></a> -->
-              <!-- <a href=""><button type="button" class="btn btn-outline-secondary btn-space">Rejeter</button> </a> -->
-              <!-- <a href=""><button type="button" class="btn btn-outline-secondary btn-space">Rappel</button> </a> -->
-              <a href="<?= site_url('admistrateur/important/') . $demande->id_demande ?>"><button type="button" class="btn btn-outline-secondary btn-space">Important</button> </a>
-              <a href="<?= site_url('admistrateur/archiver/') . $demande->id_demande ?>"><button type="button" class="btn btn-outline-secondary btn-space">Archiver</button> </a>
+            <?php if ($demande->accepte == 0 and $demande->important == 0 and $demande->archiver == 0) : ?>
+              <a href="<?= site_url('admistrateur/action/') . $demande->id_demande . '/accepter' ?>"><button type="button" class="btn btn-primary color-bg">Accepter</button> </a>
+              <a href="<?= site_url('admistrateur/action/') . $demande->id_demande . '/important' ?>"><button type="button" class="btn btn-outline-secondary btn-space">Important</button> </a>
+              <a href="<?= site_url('admistrateur/action/') . $demande->id_demande . '/archiver' ?>"><button type="button" class="btn btn-outline-secondary btn-space">Archiver</button> </a>
+            <?php elseif (!$demande->accepte == 0) : ?>
+              <a href="<?= site_url('admistrateur/action/') . $demande->id_demande . '/archiver' ?>"><button type="button" class="btn btn-outline-secondary btn-space">Archiver</button> </a>
+            <?php elseif ( !$demande->important == 0) : ?>
+              <a href="<?= site_url('admistrateur/action/') . $demande->id_demande . '/archiver' ?>"><button type="button" class="btn btn-outline-secondary btn-space">Archiver</button> </a>
+
             <?php endif ?>
+
+            <!-- <a href="#"><button class="btn btn-light btn-space" type="button" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fas fa-user-tag"></i></button></a> -->
+            <!-- <a href=""><button type="button" class="btn btn-outline-secondary btn-space">Rejeter</button> </a> -->
+            <!-- <a href=""><button type="button" class="btn btn-outline-secondary btn-space">Rappel</button> </a> -->
+
           </div>
 
         </div>

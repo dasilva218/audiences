@@ -39,11 +39,15 @@
         </a>
       </li> -->
 
-      <li class="sidebar-item <?= $active == "important" ? "active" : " " ?>"><a class="sidebar-link" href="<?= site_url('admistrateur/pageImportant') ?>">
-          <i class="far fa-star ico-menu"></i> Importants </a></li>
+      <li class="sidebar-item <?= $active == "important" ? "active" : " " ?>">
+        <a class="sidebar-link" href="<?= site_url('admistrateur/pageImportant') ?>">
+          <i class="far fa-star ico-menu"></i> Importants </a>
+      </li>
 
-      <li class="sidebar-item <?= $active == "archiver" ? "active" : " " ?>"><a class="sidebar-link" href="<?= site_url('admistrateur/pageArchiver') ?>">
-          <i class="far fa-folder ico-menu"></i> Archivées </a></li>
+      <li class="sidebar-item <?= $active == "archiver" ? "active" : " " ?>">
+        <a class="sidebar-link" href="<?= site_url('admistrateur/pageArchiver') ?>">
+          <i class="far fa-folder ico-menu"></i> Archivées </a>
+      </li>
     </ul>
 
     <span class="text-uppercase text-gray-400 text-xs letter-spacing-0 mx-3 px-2 heading">Autres</span>

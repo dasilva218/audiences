@@ -8,7 +8,7 @@ class Admistrateur extends CI_Controller
         parent::__construct();
         $this->load->model('Admistrateur_model');
         $this->load->model('Audience_model');
-        $this->load->model('ConsultAudience_model');
+        $this->load->model('Log_action_model');
     }
     //affiche le formulaire de connexion
     public function index()
@@ -66,7 +66,11 @@ class Admistrateur extends CI_Controller
             redirect('admistrateur');
         }
 
-        $audience = $this->Audience_model->sql($admin->admistrations_nom_admistration);
+        $audience_admistration = $this->Audience_model->sql($admin->admistrations_nom_admistration);
+
+        $audience = array_filter($audience_admistration, function ($aud) {
+            return $aud->accepte == 0 and $aud->important == 0 and $aud->archiver == 0;
+        });
 
         $data = [
             'demande' => $audience,
@@ -80,7 +84,7 @@ class Admistrateur extends CI_Controller
 
 
     //section détail audience
-    public function dashboard_detail($id)
+    public function dashboard_detail($id, $active)
     {
         if (!$this->est_connecte()) {
             redirect('admistrateur');
@@ -89,22 +93,33 @@ class Admistrateur extends CI_Controller
         //affiche l' admistrateur
         $admin = $this->Admistrateur_model->par_email($this->session->email_admin);
         $audience = $this->Audience_model->audience_id($id);
-        // $action_consultation = $this->ConsultAudience_model->demande_id($audience->id_demande);
+
 
         $data = [
             'demande' => $audience,
             'admistrateur' => $admin,
-            'action' => $action_consultation,
             'title' => "Consultation",
-            'active' => "dashboard"
-
         ];
-        // if($audience->nom_fichier2 == null) 
-        //     echo 'bien';
-        // else 
-        //     echo 'rien';    
-        // var_dump($audience->nom_fichier2);
-        // exit;
+
+        switch ($active) {
+            case 'dashboard':
+                $data['active'] = $active;
+                break;
+            case 'accepte':
+                $data['active'] = $active;
+                break;
+            case 'important':
+                $data['active'] = $active;
+                break;
+            case 'archiver':
+                $data['active'] = $active;
+                break;
+            default:
+                # code...
+                break;
+        }
+
+
         template('backend/audience', $data);
     }
 
@@ -123,7 +138,11 @@ class Admistrateur extends CI_Controller
             redirect('admistrateur');
         }
 
-        $audience = $this->ConsultAudience_model->accepte(1);
+        $audience_admistration = $this->Audience_model->sql($admin->admistrations_nom_admistration);
+
+        $audience = array_filter($audience_admistration, function ($aud) {
+            return $aud->accepte == 1;
+        });
 
         $data = [
             'demande' => $audience,
@@ -134,30 +153,6 @@ class Admistrateur extends CI_Controller
         ];
 
         template('backend/accepterList', $data);
-    }
-
-
-    public function accepter_detail($id)
-    {
-        if (!$this->est_connecte()) {
-            redirect('admistrateur');
-        }
-
-        //affiche l' admistrateur
-        $admin = $this->Admistrateur_model->par_email($this->session->email_admin);
-        $audience = $this->Audience_model->audience_id($id);
-        $action_consultation = $this->ConsultAudience_model->demande_id($audience->id_demande);
-
-        $data = [
-            'demande' => $audience,
-            'admistrateur' => $admin,
-            'action' => $action_consultation,
-            'active' => "accepte",
-            'title' => "Accepter",
-
-        ];
-
-        template('backend/accepterDetail', $data);
     }
 
 
@@ -174,7 +169,11 @@ class Admistrateur extends CI_Controller
             redirect('admistrateur');
         }
 
-        $audience = $this->ConsultAudience_model->important(1);
+        $audience_admistration = $this->Audience_model->sql($admin->admistrations_nom_admistration);
+
+        $audience = array_filter($audience_admistration, function ($aud) {
+            return $aud->important == 1;
+        });
 
         $data = [
             'demande' => $audience,
@@ -187,34 +186,6 @@ class Admistrateur extends CI_Controller
         template('backend/importantList', $data);
     }
 
-
-    public function important_detail($id)
-    {
-        if (!$this->est_connecte()) {
-            redirect('admistrateur');
-        }
-
-        //affiche l' admistrateur
-        $admin = $this->Admistrateur_model->par_email($this->session->email_admin);
-        $audience = $this->Audience_model->audience_id($id);
-        $action_consultation = $this->ConsultAudience_model->demande_id($audience->id_demande);
-
-        $data = [
-            'demande' => $audience,
-            'admistrateur' => $admin,
-            'action' => $action_consultation,
-            'active' => "important",
-            'title' => "Important"
-
-        ];
-        // if($audience->nom_fichier2 == null) 
-        //     echo 'bien';
-        // else 
-        //     echo 'rien';    
-        // var_dump($audience->nom_fichier2);
-        // exit;
-        template('backend/importantDetail', $data);
-    }
 
 
     public function pageArchiver()
@@ -230,7 +201,11 @@ class Admistrateur extends CI_Controller
             redirect('admistrateur');
         }
 
-        $audience = $this->ConsultAudience_model->archiver(1);
+        $audience_admistration = $this->Audience_model->sql($admin->admistrations_nom_admistration);
+
+        $audience = array_filter($audience_admistration, function ($aud) {
+            return $aud->archiver == 1;
+        });
 
         $data = [
             'demande' => $audience,
@@ -243,32 +218,9 @@ class Admistrateur extends CI_Controller
         template('backend/archiverList', $data);
     }
 
-    public function archiver_detail($id)
-    {
-        if (!$this->est_connecte()) {
-            redirect('admistrateur');
-        }
-
-        //affiche l' admistrateur
-        $admin = $this->Admistrateur_model->par_email($this->session->email_admin);
-        $audience = $this->Audience_model->audience_id($id);
-        $action_consultation = $this->ConsultAudience_model->demande_id($audience->id_demande);
-
-        $data = [
-            'demande' => $audience,
-            'admistrateur' => $admin,
-            'action' => $action_consultation,
-            'active' => "archiver",
-            'title' => "Archiver",
-
-        ];
-
-        template('backend/archiverDetail', $data);
-    }
-
-
+ 
     /* les actions sur les boutons*/
-    public function accepter($id)
+    public function action($id, $action)
     {
         if (!$this->est_connecte()) {
             redirect('admistrateur');
@@ -276,60 +228,41 @@ class Admistrateur extends CI_Controller
 
         $admin = $this->Admistrateur_model->par_email($this->session->email_admin);
         $audience = $this->Audience_model->audience_id($id);
+        // $this->Audience_model->modifier_etat($id, $action);
 
-        $consult = new ConsultAudience_model();
-        $consult->id_admistrateur = $admin->id_admistrateur;
-        $consult->id_demande = $audience->id_demande;
-        $consult->accepter = 1;
-        $consult->important = 0;
-        $consult->archiver = 0;
+        if ($this->Audience_model->modifier($id, $action)) {
 
-        $consult->action();
+            $log_action = new Log_action_model();
 
-        redirect('admistrateur/dashboard_detail/' . $audience->id_demande);
-    }
+            $log_action->action = $action;
+            $log_action->demande_audiences_id_demande = $audience->id_demande;
+            $log_action->admistrateur_id_admistrateur = $admin->id_admistrateur;
 
-    public function archiver($id)
-    {
-        if (!$this->est_connecte()) {
-            redirect('admistrateur');
+            $log_action->inser_log();
+
+            switch ($action) {
+                case 'accepter':
+                    $this->session->set_flashdata('message-success', "Audience accepté !!");
+                    break;
+                case 'important':
+                    $this->session->set_flashdata('message-success', "Placé dans les importants !!");
+                    break;
+                case 'archiver':
+                    $this->session->set_flashdata('message-success', "l'audience a été archivée !!");
+                    break;
+                default:
+                    return false;
+                    break;
+            }
         }
 
-        $admin = $this->Admistrateur_model->par_email($this->session->email_admin);
-        $audience = $this->Audience_model->audience_id($id);
-
-        $consult = new ConsultAudience_model();
-        $consult->id_admistrateur = $admin->id_admistrateur;
-        $consult->id_demande = $audience->id_demande;
-        $consult->accepter = 0;
-        $consult->important = 0;
-        $consult->archiver = 1;
-
-        $consult->action();
-
-        redirect('admistrateur/dashboard_detail/' . $audience->id_demande);
+        redirect('admistrateur/dashboard');
     }
 
-    public function important($id)
-    {
-        if (!$this->est_connecte()) {
-            redirect('admistrateur');
-        }
 
-        $admin = $this->Admistrateur_model->par_email($this->session->email_admin);
-        $audience = $this->Audience_model->audience_id($id);
+    
 
-        $consult = new ConsultAudience_model();
-        $consult->id_admistrateur = $admin->id_admistrateur;
-        $consult->id_demande = $audience->id_demande;
-        $consult->accepter = 0;
-        $consult->important = 1;
-        $consult->archiver = 0;
-
-        $consult->action();
-
-        redirect('admistrateur/dashboard_detail/' . $audience->id_demande);
-    }
+  
     /* fin des actions sur les boutons*/
 
 
