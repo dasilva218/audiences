@@ -68,13 +68,13 @@ class Front extends CI_Controller
         $file2 = "";
 
         foreach ($_FILES as $key => $value) {
-
+            
             $filesName[] = $value['name'];
         }
-
+        
         $file1 = $filesName[0];
         $file2 = $filesName[1];
-
+        
         foreach ($_FILES as $file) {
             if ($file['error'] == UPLOAD_ERR_NO_FILE) {
                 continue;
@@ -83,14 +83,14 @@ class Front extends CI_Controller
             $folderDestination = './uploads/' . $file['name'];
             $folderTemp = $file['tmp_name'];
             $succes = move_uploaded_file($folderTemp, $folderDestination);
-
+            
             if (!$succes) {
                 echo 'file no upload';
             }
         }
-
-        $this->load->model('audience_model');
-
+        
+        $this->load->model('Audience_model');
+        
         $demandeAudience = new Audience_model();
         $demandeAudience->nom_demandeur = $this->input->post('first_name');
         $demandeAudience->prenom_demandeur = $this->input->post('nom');
@@ -105,10 +105,36 @@ class Front extends CI_Controller
         $demandeAudience->civilite = $this->input->post('civilite');
         $demandeAudience->type_audience = $this->input->post('audience');
         $demandeAudience->message = $this->input->post('note');
-        $demandeAudience->nom_admistration = $this->input->post('subject');
+        $demandeAudience->admistrations_nom_admistration = $this->input->post('subject');
 
-        $demandeAudience->enregistrer_audience();
-        redirect('front/audience');
+        //On enregistre la demande d'audience
+        $succes = $demandeAudience->enregistrer_audience();
+        // exit("message d'erreur");
+        //On redirige en fonction du succe
+        if ($succes) {
+            # code...
+            // On charge la vue du mail
+            $message = $this->load->view('email/demandeur/enregistrement', '', TRUE);
+
+            $cles    = array('{destination}', '{NOM}');
+            $valeurs = array($demandeAudience->destinataire, $demandeAudience->nom_demandeur);
+
+            $message = str_replace($cles, $valeurs, $message);
+
+            // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+            //$headers[] = 'MIME-Version: 1.0';
+            //$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+
+            $headers  = "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+            $headers .= $demandeAudience->destinataire;
+
+            // On envoie un mail au candidat
+            mail($demandeAudience->email, 'Audience', $message, $headers);
+            $this->session->set_flashdata('message', "Demende bien envoyé");
+            // On redirige vers la page de confirmation
+            redirect('front/audience');
+        }
     }
 
     public function affichefront($vue, $data = array())

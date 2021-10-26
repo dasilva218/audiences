@@ -22,6 +22,7 @@
     <script src="<?=static_url('js/charts-custom.js') ?>"></script>
     <!-- Main File-->
     <script src="<?=static_url('js/front.js') ?>"></script>
+    <script src="<?=static_url('js/style.js') ?>"></script>
     <script>
       // ------------------------------------------------------- //
       //   Inject SVG Sprite - 

@@ -1,11 +1,19 @@
+<?php if ($this->session->flashdata('message-success')) : ?>
+  <p class="row align-items-center gx-lg-5 gy-3" style="padding: 5px 10px; font-weight: bold; color: red; margin:0;">
+    <?= $this->session->flashdata('message-success'); ?>
+  </p>
+<?php endif; ?>
+
+
 <?php foreach ($demande as $item) : ?>
 
   <!-- Received demands Section-->
   <section class="pb-0">
     <div class="container">
       <!-- Demande 1-->
+
       <div class="card card-demand mb-0">
-        <a href="<?= site_url('admistrateur/dashboard_detail/') . $item->id_demande ?>">
+        <a href="<?= site_url('admistrateur/dashboard_detail/') . $item->id_demande . '/dashboard' ?>">
           <div class="card-body p-1">
             <div class="row align-items-center gx-lg-5 gy-3">
               <div class="col-lg-6 border-lg-end">
@@ -21,7 +29,7 @@
                     </div>
                   </div>
                   <span class="text-sm text-gray-600 d-none d-sm-block">
-                    <?= $item->date_envoie ?>
+                    <?= date_formater($item->date_envoie) ?>
                   </span>
                 </div>
               </div>

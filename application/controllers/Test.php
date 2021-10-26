@@ -4,7 +4,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Test extends CI_Controller
 {
-	public function affich($_roots = '')
+	public function __construct()
+	{
+		parent:: __construct();
+		$this->load->model('Audience_model');
+	}
+
+	public function affich()
 	{
 		$admistrations = [
 			'Primature',
@@ -14,12 +20,20 @@ class Test extends CI_Controller
 			'Ministère du Travail',
 			"Ministère de l'Economie]",
 		];
-		$this->load->view($_roots);
+		$this->load->view('test_vue');
 	}
 
 	public function test_code()
 	{
-		echo static_url('static/js/');
+		// $demande_audiences = $this->Audience_model->sql('Primature');
+
+		// // var_dump($demande_audiences);
+		// $user = [
+		// 	'nom' => $demande_audiences,
+		// ];
+
+		// echo( json_encode($user) );
+		$this->load->view('email/demandeur/enregistrement');
 	}
 
 	public function affiche()
