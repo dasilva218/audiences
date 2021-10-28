@@ -11,9 +11,14 @@ function static_url($chemin)
     return base_url('static/' . $chemin);
 }
 
-function static_url_front($chemin)
+function static_url_front($fichier)
 {
-    return base_url('static/front/' . $chemin);
+    return base_url('static/front/' . $fichier);
+}
+
+function static_url_vendor($fichier)
+{
+    return base_url('static/vendor/' . $fichier);
 }
 
 function upload_url($chemin)

@@ -66,11 +66,11 @@ class Admistrateur extends CI_Controller
             redirect('admistrateur');
         }
 
-        $audience_admistration = $this->Audience_model->sql($admin->admistrations_nom_admistration);
-
-        $audience = array_filter($audience_admistration, function ($aud) {
-            return $aud->accepte == 0 and $aud->important == 0 and $aud->archiver == 0;
-        });
+        $audience = $this->Audience_model->sql($admin->admistrations_nom_admistration);
+        // var_dump($audience);
+        // $audience = array_filter($audience_admistration, function ($aud) {
+        //     return $aud->accepte == 0 and $aud->important == 0 and $aud->archiver == 0;
+        // });
 
         $data = [
             'demande' => $audience,
@@ -218,7 +218,7 @@ class Admistrateur extends CI_Controller
         template('backend/archiverList', $data);
     }
 
- 
+
     /* les actions sur les boutons*/
     public function action($id, $action)
     {
@@ -256,13 +256,13 @@ class Admistrateur extends CI_Controller
             }
         }
 
-        redirect('admistrateur/dashboard');
+        redirect('admistrateur/dashboard_detail/' . $audience->id_demande . '/' . $action);
     }
 
 
-    
 
-  
+
+
     /* fin des actions sur les boutons*/
 
 
