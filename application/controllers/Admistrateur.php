@@ -241,7 +241,7 @@ class Admistrateur extends CI_Controller
             $log_action->inser_log();
 
             switch ($action) {
-                case 'accepter':
+                case 'accepte':
                     $this->session->set_flashdata('message-success', "Audience accepté !!");
                     break;
                 case 'important':
