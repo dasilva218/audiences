@@ -9,6 +9,17 @@ class Front extends CI_Controller
         $this->affichefront('frontend/home');
     }
 
+    // page de confirmation d'envoi audience
+    public function confirmAudience()
+    {
+        $this->load->view('frontend/message_reussi');
+    }
+
+    public function mail()
+    {
+        $this->load->view('email/demandeur/confir_mail');
+    }
+
     // affiche le formulaire de demande d'audience
     public function audience()
     {
@@ -114,10 +125,10 @@ class Front extends CI_Controller
         if ($succes) {
             # code...
             // On charge la vue du mail
-            $message = $this->load->view('email/demandeur/enregistrement', '', TRUE);
+            $message = $this->load->view('email/demandeur/confir_mail', '', TRUE);
 
-            $cles    = array('{destination}', '{NOM}');
-            $valeurs = array($demandeAudience->destinataire, $demandeAudience->nom_demandeur);
+            $cles    = array('{destination}','{genre}', '{nom}');
+            $valeurs = array($demandeAudience->destinataire, ($demandeAudience->civilite == 'Madame' ? 'Mme' : 'M.'), $demandeAudience->nom_demandeur);
 
             $message = str_replace($cles, $valeurs, $message);
 
@@ -131,9 +142,9 @@ class Front extends CI_Controller
 
             // On envoie un mail au candidat
             mail($demandeAudience->email, 'Audience', $message, $headers);
-            $this->session->set_flashdata('message', "Demende bien envoyé");
+            
             // On redirige vers la page de confirmation
-            redirect('front/audience');
+            redirect('front/confirmAudience');
         }
     }
 

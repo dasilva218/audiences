@@ -1,10 +1,5 @@
  <!-- Page content-->
  <section class="py-5">
-   <?php if ($this->session->flashdata('message')) : ?>
-     <p class="justify-content-center" style="padding: 5px 10px; font-weight: bold; color: red; margin:0;">
-       <?= $this->session->flashdata('message'); ?>
-     </p>
-   <?php endif; ?>
    <div class="container px-8">
      <!-- Contact form-->
      <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">

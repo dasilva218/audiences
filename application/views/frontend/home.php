@@ -6,8 +6,8 @@
                                <h1 class="display-5 fw-bolder text-black mb-2">Envoyez vos demandes d'audiences en ligne</h1>
                                <p class="lead fw-normal text-dark-50 mb-4">Ne vous déplacez plus! Peu importe où vous êtes, envoyez votre demande d'audience en moins de 2 minutes au sein des Ministères et gagnez du temps. </p>
                                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                                   <a class="btn btn-primary btn-lg px-4 me-sm-3" href="<?= site_url('front/audience') ?>">Envoyer ma demande</a>
-                                   <a class="btn btn-outline-dark btn-lg px-4 me-sm-3" href="<?= site_url('front/help') ?>">Comment ça marche ?</a>
+                                   <a class="btn btn-primary btn-lg px-4 me-sm-3" href="<?=site_url()?>formulaire">Envoyer ma demande</a>
+                                   <a class="btn btn-outline-dark btn-lg px-4 me-sm-3" href="<?= site_url() ?>aide">Comment ça marche ?</a>
                                </div>
                            </div>
                        </div>
@@ -67,7 +67,7 @@
                                        Gérant, Solution
                                    </div>
                                </div>
-                               <a class="btn btn-primary btn-lg px-4 me-sm-3 text-center px-5 mt-5" href="<?= site_url('front/audience') ?> ">Envoyer ma demande</a>
+                               <a class="btn btn-primary btn-lg px-4 me-sm-3 text-center px-5 mt-5" href="<?=site_url()?>formulaire">Envoyer ma demande</a>
                            </div>
                        </div>
                    </div>
