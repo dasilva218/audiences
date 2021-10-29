@@ -10,6 +10,18 @@
           <h3 class="mb-2">
             <?= $demande->objet ?>
           </h3>
+          <?php if ($this->session->flashdata('message-success')) : ?>
+            <div class="alert mt-3 fw-bold alert-secondary" role="alert">
+              <h4>
+                <?= $this->session->flashdata('message-success'); ?>
+              </h4>
+            </div>
+          <?php endif; ?>
+          <!-- <?php if ($this->session->flashdata('message-success')) : ?>
+            <p class="row align-items-center gx-lg-5 gy-3" style="padding: 5px 10px; font-weight: bold; color: red; margin:0;">
+              <?= $this->session->flashdata('message-success'); ?>
+            </p>
+          <?php endif; ?> -->
 
           <hr class="mb-4">
 
@@ -69,14 +81,14 @@
           <!-- Button lists -->
           <div class="mb-4">
             <?php if ($demande->accepte == 0 and $demande->important == 0 and $demande->archiver == 0) : ?>
-              <a href="<?= site_url('admistrateur/action/') . $demande->id_demande . '/accepter' ?>"><button type="button" class="btn btn-primary color-bg">Accepter</button> </a>
+              <a href="<?= site_url('admistrateur/action/') . $demande->id_demande . '/accepte' ?>"><button type="button" class="btn btn-primary color-bg">Accepter</button> </a>
               <a href="<?= site_url('admistrateur/action/') . $demande->id_demande . '/important' ?>"><button type="button" class="btn btn-outline-secondary btn-space">Important</button> </a>
               <a href="<?= site_url('admistrateur/action/') . $demande->id_demande . '/archiver' ?>"><button type="button" class="btn btn-outline-secondary btn-space">Archiver</button> </a>
             <?php elseif (!$demande->accepte == 0) : ?>
               <a href="<?= site_url('admistrateur/action/') . $demande->id_demande . '/important' ?>"><button type="button" class="btn btn-outline-secondary btn-space">Important</button> </a>
               <a href="<?= site_url('admistrateur/action/') . $demande->id_demande . '/archiver' ?>"><button type="button" class="btn btn-outline-secondary btn-space">Archiver</button> </a>
             <?php elseif (!$demande->important == 0) : ?>
-              <a href="<?= site_url('admistrateur/action/') . $demande->id_demande . '/accepter' ?>"><button type="button" class="btn btn-primary color-bg">Accepter</button> </a>
+              <a href="<?= site_url('admistrateur/action/') . $demande->id_demande . '/accepte' ?>"><button type="button" class="btn btn-primary color-bg">Accepter</button> </a>
               <a href="<?= site_url('admistrateur/action/') . $demande->id_demande . '/archiver' ?>"><button type="button" class="btn btn-outline-secondary btn-space">Archiver</button> </a>
 
             <?php endif ?>
@@ -88,11 +100,7 @@
           </div>
 
         </div>
-        <?php if ($this->session->flashdata('message-success')) : ?>
-          <p class="row align-items-center gx-lg-5 gy-3" style="padding: 5px 10px; font-weight: bold; color: red; margin:0;">
-            <?= $this->session->flashdata('message-success'); ?>
-          </p>
-        <?php endif; ?>
+
       </div>
 
       <div class="col-lg-4 warning-section">

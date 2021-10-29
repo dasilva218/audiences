@@ -76,7 +76,7 @@ class Audience_model extends CI_Model
     public function modifier($id, $action)
     {
         switch ($action) {
-            case 'accepter':
+            case 'accepte':
                 $sql = " UPDATE demande_audiences 
                 SET accepte = 1, important = 0, archiver = 0  
                 WHERE demande_audiences.id_demande = ? ";
