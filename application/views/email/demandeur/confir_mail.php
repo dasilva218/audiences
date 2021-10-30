@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
-    <title></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{destination}</title>
     <style type="text/css">
         @media screen {
             @font-face {
@@ -46,13 +45,9 @@
             -ms-text-size-adjust: 100%;
         }
 
-        table,
-        td {
-            mso-table-lspace: 0pt;
-            mso-table-rspace: 0pt;
-        }
+      
 
-        img {
+        */ img {
             -ms-interpolation-mode: bicubic;
         }
 
@@ -132,7 +127,7 @@
                     <tr>
                         <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
                             <p style="margin: 0;">
-                                Bonjour {genre} {nom}, votre demande d'audience à la {destination} a bien été réceptionnée. Vous serez contacté dans les plus brefs délais 
+                                Bonjour {genre} {nom}, votre demande d'audience à la {destination} a bien été réceptionnée. Vous serez contacté dans les plus brefs délais
                                 pour être reçu en audience. Prenez soin de vous tout en respectant les mesures barrières.
                             </p>
                         </td>
@@ -158,17 +153,17 @@
                     </tr> <!-- COPY -->
                     <tr>
                         <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 0px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;">Vous avez des questions sur Audiences ? Nous sommes là pour vous <a href="<?=site_url()?>aides" target="_blank" rel="noopener noreferrer">aider</a> </p>
+                            <p style="margin: 0;">Vous avez des questions sur Audiences ? Nous sommes là pour vous <a href="<?= site_url() ?>aides" target="_blank" rel="noopener noreferrer">aider</a> </p>
                         </td>
                     </tr> <!-- COPY -->
                     <tr>
                         <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 20px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;"><a href="<?=site_url()?>accueil " target="_blank" style="color: #FFA73B;"><?=base_url() ?></a></p>
+                            <p style="margin: 0;"><a href="<?= site_url() ?>accueil " target="_blank" style="color: #FFA73B;"><?= base_url() ?></a></p>
                         </td>
                     </tr>
                     <tr>
                         <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 20px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;">Vous recevez ce message suite à votre demande d'audience sur <a href="<?=site_url()?>accueil " target="_blank" rel="noopener noreferrer">Audiences</a> </p>
+                            <p style="margin: 0;">Vous recevez ce message suite à votre demande d'audience sur <a href="<?= site_url() ?>accueil " target="_blank" rel="noopener noreferrer">Audiences</a> </p>
                         </td>
                     </tr>
                     <tr>

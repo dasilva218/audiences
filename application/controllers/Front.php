@@ -142,11 +142,12 @@ class Front extends CI_Controller
 
             // On envoie un mail au candidat
             mail($demandeAudience->email, 'Audience', $message, $headers);
-            
+                    
             // On redirige vers la page de confirmation
             redirect('front/confirmAudience');
         }
     }
+
 
     public function affichefront($vue, $data = array())
     {
