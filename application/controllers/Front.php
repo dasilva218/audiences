@@ -15,11 +15,8 @@ class Front extends CI_Controller
         $this->load->view('frontend/message_reussi');
     }
 
-    public function mail()
-    {
-        $this->load->view('email/demandeur/confir_mail');
-    }
 
+    
     // affiche le formulaire de demande d'audience
     public function audience()
     {
