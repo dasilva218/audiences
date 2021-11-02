@@ -127,7 +127,7 @@ class Front extends CI_Controller
         if ($succes) {
             # code...
             // On charge la vue du mail
-            $message = $this->load->view('email/demandeur/confir_mail', '', TRUE);
+            $message = $this->load->view('email/demandeur/enregistrement', '', TRUE);
 
             $cles    = array(
                 '{destination}',
