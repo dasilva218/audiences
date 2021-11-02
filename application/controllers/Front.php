@@ -14,11 +14,13 @@ class Front extends CI_Controller
     {
         $this->load->view('frontend/message_reussi');
     }
-
-    public function mail()
+   
+    public function confirM()
     {
         $this->load->view('email/demandeur/confir_mail');
     }
+
+
 
     // affiche le formulaire de demande d'audience
     public function audience()
@@ -79,13 +81,13 @@ class Front extends CI_Controller
         $file2 = "";
 
         foreach ($_FILES as $key => $value) {
-            
+
             $filesName[] = $value['name'];
         }
-        
+
         $file1 = $filesName[0];
         $file2 = $filesName[1];
-        
+
         foreach ($_FILES as $file) {
             if ($file['error'] == UPLOAD_ERR_NO_FILE) {
                 continue;
@@ -94,14 +96,14 @@ class Front extends CI_Controller
             $folderDestination = './uploads/' . $file['name'];
             $folderTemp = $file['tmp_name'];
             $succes = move_uploaded_file($folderTemp, $folderDestination);
-            
+
             if (!$succes) {
                 echo 'file no upload';
             }
         }
-        
+
         $this->load->model('Audience_model');
-        
+
         $demandeAudience = new Audience_model();
         $demandeAudience->nom_demandeur = $this->input->post('first_name');
         $demandeAudience->prenom_demandeur = $this->input->post('nom');
@@ -127,8 +129,16 @@ class Front extends CI_Controller
             // On charge la vue du mail
             $message = $this->load->view('email/demandeur/confir_mail', '', TRUE);
 
-            $cles    = array('{destination}','{genre}', '{nom}');
-            $valeurs = array($demandeAudience->destinataire, ($demandeAudience->civilite == 'Madame' ? 'Mme' : 'M.'), $demandeAudience->nom_demandeur);
+            $cles    = array(
+                '{destination}',
+                '{genre}',
+                '{nom}'
+            );
+            $valeurs = array(
+                $demandeAudience->destinataire,
+                ($demandeAudience->civilite == 'Madame' ? 'Mme' : 'M.'),
+                $demandeAudience->nom_demandeur
+            );
 
             $message = str_replace($cles, $valeurs, $message);
 
@@ -142,11 +152,12 @@ class Front extends CI_Controller
 
             // On envoie un mail au candidat
             mail($demandeAudience->email, 'Audience', $message, $headers);
-            
+
             // On redirige vers la page de confirmation
             redirect('front/confirmAudience');
         }
     }
+
 
     public function affichefront($vue, $data = array())
     {
