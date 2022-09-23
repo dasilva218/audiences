@@ -7,7 +7,7 @@
                                <p class="lead fw-normal text-dark-50 mb-4">Ne vous déplacez plus! Peu importe où vous êtes, envoyez votre demande d'audience en moins de 2 minutes au sein des Ministères et gagnez du temps. </p>
                                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
                                    <a class="btn btn-primary btn-lg px-4 me-sm-3" href="<?=site_url()?>formulaire">Envoyer ma demande</a>
-                                   <a class="btn btn-outline-dark btn-lg px-4 me-sm-3" href="<?= site_url() ?>aide">Comment ça marche ?</a>
+                                   <a class="btn btn-outline-dark btn-lg px-4 me-sm-3" href="<?= site_url() ?>aides">Comment ça marche ?</a>
                                </div>
                            </div>
                        </div>
